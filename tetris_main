@@ -15,13 +15,6 @@ gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-
-#define  left_color   12   //  high red
-#define  right_color  14   //  yellow
-#define  up_color     10   //  high green
-#define  down_color   11   //  high cyan
-
-
 unsigned char t_ar[22][12];
 unsigned char t_ar_save[22][12];
          

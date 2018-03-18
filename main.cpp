@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <graphics.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <conio.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <iostream>
 #include <iomanip>
 
@@ -58,7 +54,7 @@ unsigned char shape[7][4][4][4]= { { { {0,0,1,0},
                                      { {0,0,0,0}, 
                                        {0,0,0,0}, 
                                        {1,1,1,1}, 
-                                       {0,0,0,0} } },  //  l  ∏æÁ  
+                                       {0,0,0,0} } },  //  l  Î™®Ïñë  
                                     
                                    { { {0,0,0,0}, 
                                        {0,1,0,0}, 
@@ -75,7 +71,7 @@ unsigned char shape[7][4][4][4]= { { { {0,0,1,0},
                                      { {0,0,0,0}, 
                                        {0,1,1,0}, 
                                        {0,1,0,0},
-                                       {0,1,0,0} } },  // §§  ∏æÁ 
+                                       {0,1,0,0} } },  // „Ñ¥  Î™®Ïñë 
                                   
                                    { { {0,0,0,0}, 
                                        {0,1,1,0}, 
@@ -92,7 +88,7 @@ unsigned char shape[7][4][4][4]= { { { {0,0,1,0},
                                      { {0,0,0,0}, 
                                        {0,1,1,0}, 
                                        {0,1,1,0}, 
-                                       {0,0,0,0} } },  // §±  ∏æÁ 
+                                       {0,0,0,0} } },  // „ÖÅ  Î™®Ïñë 
                                     
                                   {  { {0,0,0,0}, 
                                        {0,0,1,0}, 
@@ -109,7 +105,7 @@ unsigned char shape[7][4][4][4]= { { { {0,0,1,0},
                                      { {0,0,0,0}, 
                                        {0,1,0,0}, 
                                        {0,1,1,0}, 
-                                       {0,1,0,0} } },  //  §«  ∏æÁ 
+                                       {0,1,0,0} } },  //  „Öó  Î™®Ïñë 
                                        
                                    { { {0,0,0,0}, 
                                        {0,0,1,0}, 
@@ -126,7 +122,7 @@ unsigned char shape[7][4][4][4]= { { { {0,0,1,0},
                                      { {0,0,0,0}, 
                                        {0,1,0,0}, 
                                        {0,1,0,0},
-                                       {0,1,1,0} } },  // §§  ∏æÁ 
+                                       {0,1,1,0} } },  // „Ñ¥  Î™®Ïñë 
                                        
                                    { { {0,0,0,0}, 
                                        {0,1,1,0}, 
@@ -143,7 +139,7 @@ unsigned char shape[7][4][4][4]= { { { {0,0,1,0},
                                      { {0,0,0,0}, 
                                        {0,0,1,0},
                                        {0,1,1,0}, 
-                                       {0,1,0,0} } },  // §©  ∏æÁ 
+                                       {0,1,0,0} } },  // „Ñπ  Î™®Ïñë 
                                        
                                    { { {0,0,0,0}, 
                                        {0,1,1,0}, 
@@ -160,7 +156,7 @@ unsigned char shape[7][4][4][4]= { { { {0,0,1,0},
                                      { {0,0,0,0}, 
                                        {0,1,0,0},
                                        {0,1,1,0}, 
-                                       {0,0,1,0} } } // §© π›¥Î ∏æÁ 
+                                       {0,0,1,0} } } // „Ñπ Î∞òÎåÄ Î™®Ïñë 
                                 };
                                 
 unsigned char color_idx[7] = { 2,3,4,5,6,7,8 };
@@ -234,11 +230,11 @@ position  before_pos[4];
 
 void  t_ar_init ( void ) ;
 void  print_all ( void );
-void  print_shape ( int , int);
+void  print_shape ( int , int );
 
 void  print_recover ( int , int  );
-void  print_overlap ( int , int , int , int);
-int   overlap_check ( int,  int , int , int);
+void  print_overlap ( int , int , int , int );
+int   overlap_check ( int,  int , int , int );
 void  overlap_save ( int , int, int, int  );
 void  tetris_clear ( void );
 
@@ -269,7 +265,7 @@ int main(int argc, char *argv[]) {
    
    
    g_tetris_init ( );
-    //πË∞Ê√‚∑¬     
+    //Î∞∞Í≤ΩÏ∂úÎ†•     
    g_print_all ();
    
    t_ar_init ();
@@ -278,7 +274,7 @@ int main(int argc, char *argv[]) {
    
   
    
-   // shape¡ˆ¡§  
+   // shapeÏßÄÏ†ï  
    srand((unsigned int) time(NULL));
    s_idx = rand()%7;
    print_shape (s_idx, turn_idx);
@@ -593,9 +589,9 @@ void  print_overlap ( int x, int y, int idx, int turn ) {
                        textcolor( white );
                        printf("*"); 
                        
-                         //  data∞° value == color  
+                         //  dataÍ∞Ä value == color  
                        if ( t_i + i > 0)  {
-                           g_print_move ( t_j + j,t_i + i, color_idx[idx]);   //  data∞° value == color  
+                           g_print_move ( t_j + j,t_i + i, color_idx[idx]);   //  dataÍ∞Ä value == color  
                            save_pos[pos_i].x = t_j + j;
                            save_pos[pos_i].y = t_i + i;
                            pos_i =  pos_i + 1;
@@ -780,22 +776,9 @@ void  g_score_print ( int  score ) {
     		
     	} // for i  
     	
-        	
+  	
     }  // for j
- 
   }  // for k
- 
- 
-   
-    // if  ( data  ==  1 )   putimage(x_pos,y_pos,buf1[idx],0); 
-    // else putimage(x_pos,y_pos,buf3,0); 
-     
-   
-   // gotoxy(23,13);
-    //textcolor( white );
-    //printf("g shape idx:%4d  x:%4d  xpos:%4d y:%4d, ypos:%4d ",
-   //                  idx,  x, x_pos, y, y_pos    ); 
-    
 }
 
 void  g_tetris_init ( void ){
@@ -803,16 +786,16 @@ void  g_tetris_init ( void ){
      
     initwindow( 742 , 552 , "nks tetris" ); 
 
-    //πË∞Ê±◊∏≤ ∫“∑Øø¿±‚   »≠∏Èø°  display 
+    //Î∞∞Í≤ΩÍ∑∏Î¶º Î∂àÎü¨Ïò§Í∏∞   ÌôîÎ©¥Ïóê  display 
     readimagefile(
         "nks_back1.jpg",    	
     0,0,742,552
     ); 
     size = imagesize(0,0,742,552);  
     buf = (char *)malloc(size);
-    getimage(0, 0, 742,552,buf);   //  buff  memory∑Œ  ∞°¡Æø¿±‚ 
+    getimage(0, 0, 742,552,buf);   //  buff  memoryÎ°ú  Í∞ÄÏ†∏Ïò§Í∏∞ 
 
-    //∫Û ∫Ì∑∞ ∫“∑Øø¿±‚ 
+    //Îπà Î∏îÎü≠ Î∂àÎü¨Ïò§Í∏∞ 
     readimagefile(
     "nks_nullblock.jpg",    	
     0,0,block_size,block_size
@@ -821,7 +804,7 @@ void  g_tetris_init ( void ){
     buf2 = (char *)malloc(size);
     getimage(0, 0, block_size, block_size,buf2);  
     
-    //∫Ûshape  ∫Ì∑∞ ∫“∑Øø¿±‚ 
+    //Îπàshape  Î∏îÎü≠ Î∂àÎü¨Ïò§Í∏∞ 
     readimagefile(
     "shape_nullblock.jpg",    	
     0,0,block_size,block_size
@@ -831,7 +814,7 @@ void  g_tetris_init ( void ){
     getimage(0, 0, block_size, block_size,buf3);
  
  
-    //∫Ì∑∞±◊∏≤ ∫“∑Øø¿±‚   
+    //Î∏îÎü≠Í∑∏Î¶º Î∂àÎü¨Ïò§Í∏∞   
     readimagefile(
     "nks_block0.jpg",    	
     0,0,block_size,block_size

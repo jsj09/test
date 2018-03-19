@@ -13,7 +13,7 @@
 #define G4 1275.526 // 솔
 #define A4 1136.364 //라
 #define B4 1012.385 //시
-#define C5 955.564
+#define C5 955.564 //높은 도
 #define D5 851.3107
 #define E5 1516.865113
 #define F5 1431.729415
@@ -27,37 +27,31 @@ int MatrixCol[8] = { 36, 39, 40, 47, 42, 46, 34, 33 };
 int MatrixRow[8] = { 48, 35, 44, 45, 37, 43, 38, 41 };
 
 unsigned char numData[10][8] = {{0x00, 0x38, 0x44, 0x4c, 0x54, 0x64, 0x44, 0x38}, //0
-  {0x00, 0x10, 0x30, 0x50, 0x10, 0x10, 0x10, 0x7c}, //1
-  {0x00, 0x38, 0x44, 0x04, 0x08, 0x10, 0x20, 0x7c}, //2
-  {0x00, 0x38, 0x44, 0x04, 0x18, 0x04, 0x44, 0x38}, //3
-  {0x00, 0x08, 0x18, 0x28, 0x48, 0x7c, 0x08, 0x08}, //4
-  {0x00, 0x7c, 0x40, 0x78, 0x04, 0x04, 0x44, 0x38}, //5
-  {0x00, 0x38, 0x40, 0x40, 0x78, 0x44, 0x44, 0x38}, //6
-  {0x00, 0x7c, 0x04, 0x08, 0x10, 0x20, 0x20, 0x20}, //7
-  {0x00, 0x38, 0x44, 0x44, 0x38, 0x44, 0x44, 0x38}, //8
-  {0x00, 0x38, 0x44, 0x44, 0x3c, 0x04, 0x44, 0x38}
-}; //9
+                                {0x00, 0x10, 0x30, 0x50, 0x10, 0x10, 0x10, 0x7c}, //1
+                                {0x00, 0x38, 0x44, 0x04, 0x08, 0x10, 0x20, 0x7c}, //2
+                                {0x00, 0x38, 0x44, 0x04, 0x18, 0x04, 0x44, 0x38}, //3
+                                {0x00, 0x08, 0x18, 0x28, 0x48, 0x7c, 0x08, 0x08}, //4
+                                {0x00, 0x7c, 0x40, 0x78, 0x04, 0x04, 0x44, 0x38}, //5
+                                {0x00, 0x38, 0x40, 0x40, 0x78, 0x44, 0x44, 0x38}, //6
+                                {0x00, 0x7c, 0x04, 0x08, 0x10, 0x20, 0x20, 0x20}, //7
+                                {0x00, 0x38, 0x44, 0x44, 0x38, 0x44, 0x44, 0x38}, //8
+                                {0x00, 0x38, 0x44, 0x44, 0x3c, 0x04, 0x44, 0x38}}; //9
 unsigned char dotMatrix[8][8] = {0,};
 
-int Num[10] =  { 0x3f, 0x06, 0x5b, 0x4f, 0x66,
-                 0x6d, 0x7d, 0x27, 0x7f, 0x6f
-               }; // fnd 0~9
-int dotNum[10] = { 0xbf, 0x86, 0xdb, 0xcf, 0xe6,
-                   0xed, 0xfd, 0xa7, 0xff, 0xef
-                 }; // fnd 0~9+DP
+int Num[10] =  { 0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x27, 0x7f, 0x6f }; // fnd 0~9
+int dotNum[10] = { 0xbf, 0x86, 0xdb, 0xcf, 0xe6, 0xed, 0xfd, 0xa7, 0xff, 0xef }; // fnd 0~9+DP
 
 char key[ROWS][COLS] = {{ 'C', '(', '%', '/' },
-  { '7', '8', '9', 'X' },
-  { '4', '5', '6', '-' },
-  { '1', '2', '3', '+' },
-  { '.', '0', 'P', '=' }
-};
+                        { '7', '8', '9', 'X' },
+                        { '4', '5', '6', '-' },
+                        { '1', '2', '3', '+' },
+                        { '.', '0', 'P', '=' }};
 
 byte rowPins[ROWS] = { 12, 10, 8, 6, 5 };
 byte colPins[COLS] = { 13, 11, 9, 7 };
 
 char bs, pbs;  //button status, previous button status
-int pck; //previous colum key
+int pck; //previous colum key 
 int row, col = 0;
 int psw = 0, csw = 0;
 int pcnt, cnt = 0;
@@ -100,7 +94,7 @@ MUSIC music[] = { {G4, 500}, {G4, 500}, {A4, 500}, {A4, 500},
 void setup() {
   Serial.begin(115200);
 
-  //buzzer
+  //Buzzer
   pinMode( buzzerPin, OUTPUT );
   pinMode( swPin, INPUT );  
 
@@ -118,7 +112,7 @@ void setup() {
     pinMode( fndPins[i], OUTPUT );
   }
 
-  //KEY MATRIX
+  //키 매트릭스
   for (int col = 0; col < COLS; col++ ) {
     pinMode ( colPins[col], OUTPUT );
     digitalWrite( colPins[col], HIGH );
@@ -127,14 +121,14 @@ void setup() {
     pinMode ( rowPins[row], INPUT );
   }
   
-  //DOT MATRIX
+  //도트 매트릭스
   for ( int i = 0; i < 8; i++ ) {
     pinMode( MatrixCol[i], OUTPUT );
     pinMode( MatrixRow[i], OUTPUT );
     digitalWrite( MatrixCol[i], HIGH );
   }
   
-  //ULTRASONIC SENSOR
+  //초음파 센서
   pinMode( triggerPin, OUTPUT );
   pinMode( echoPin, INPUT );
   digitalWrite( echoPin, HIGH );
@@ -223,7 +217,6 @@ void LED_ON(int num) {
      if ( flag2 == 1 ) LED.count = LED.count * 2;
      if ( flag2 == 0 ) LED.count = LED.count / 2;
   }
-
   for ( int n = 7; n >= 0; n-- ) {
     if ( digitalRead(swPin) == LOW )  
     if ( num & ( 1 << n ) ) {
@@ -247,8 +240,8 @@ void SW_vcc() {
   SW.Delay = 10;
   if ( SW.currentMillis - SW.previousMillis > SW.Delay ) { // 10미리마다 전원
     if ( digitalRead(swPin) == LOW )  
-    SW.previousMillis = SW.currentMillis;
-    digitalWrite( colPins[psw], HIGH );
+    SW.previousMillis = SW.currentMillis;  
+    digitalWrite( colPins[psw], HIGH ); //이전 줄 OFF
     if ( digitalRead(swPin) == LOW )   
     digitalWrite( colPins[csw], LOW );
     if ( digitalRead(swPin) == LOW )  
@@ -273,7 +266,7 @@ void SW_ON() {
         if ( pbs == 20 ) { //이전에 아무 키도 눌리지 않았을 때
           Serial.print( key[row][psw] );
           if ( digitalRead(swPin) == LOW )   
-        } else { // 20이 아닐때, 뭔가 눌렸을 때
+        } else { // 20이 아닐때 = 뭔가 눌렸을 때
           Serial.print( key[row][psw] );
           if ( digitalRead(swPin) == LOW )  
         }
@@ -282,7 +275,7 @@ void SW_ON() {
       }
     }
     if ( row == 5 ) {
-      if ( pck == psw ) { //다시 같은 칼럼 돌아왔을때, 스위치가 떨어졌다 아니다 판단
+      if ( pck == psw ) { //다시 이전과 같은 칼럼에 돌아왔을때, 스위치가 떨어졌다 아니다 판단
         pbs = 20;
         pck = 20;
 
